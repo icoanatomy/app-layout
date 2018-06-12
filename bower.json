@@ -64,13 +64,5 @@
   "private": true,
   "resolutions": {
     "webcomponentsjs": "^1.0.0"
-  },
-  "_resolution": {
-    "type": "branch",
-    "branch": "#icoanatomy-editor",
-    "commit": "6071fa25f8368409c164db96dc23348957b1a78a"
-  },
-  "_source": "https://github.com/icoanatomy/app-layout.git",
-  "_target": "#icoanatomy-editor",
-  "_originalSource": "https://github.com/icoanatomy/app-layout.git"
+  }
 }
