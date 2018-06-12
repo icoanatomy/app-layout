@@ -360,6 +360,12 @@ Mixin | Description | Default
          */
         reveals: {type: Boolean, value: false},
 
+
+        /**
+         * ID of element that should stay in header when scrolling down.
+         */
+        remnantElementId: {type: String, reflectToAttribute: true},
+
         /**
          * Displays a shadow below the header.
          */
@@ -550,11 +556,15 @@ Mixin | Description | Default
           this._wasScrollingDown = isScrollingDown;
           this._lastTimestamp = now;
         }
-        if (forceUpdate || progress !== this._progress || lastTop !== top ||
-            scrollTop === 0) {
+        if (forceUpdate || progress !== this._progress || lastTop !== top || scrollTop === 0) {
+
+          const addonEl = this.remnantElementId && Polymer.dom(this).querySelector(`#${this.remnantElementId}`);
+          const addonHeight = addonEl && addonEl.clientHeight;
+
           this._progress = progress;
           this._runEffects(progress, top);
-          this._transformHeader(top);
+
+          this._transformHeader(addonHeight && this._wasScrollingDown && (scrollTop >= maxHeaderTop) ? top - addonHeight - 4 : top);
         }
       },
 
